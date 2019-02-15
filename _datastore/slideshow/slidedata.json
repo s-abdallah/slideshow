@@ -1,0 +1,154 @@
+{
+  "SLIDES":{
+    "items":{
+      "1":{
+        "type":"image",
+        "title":"PNGs In Use",
+        "source":"_content/slides/img-1.png",
+        "png": true,
+        "background-color": "#1b1b1b"
+      },
+      "2":{
+        "type":"image",
+        "title":"Photo by David Clode on Unsplash",
+        "source":"_content/slides/img-2.jpg"
+      },
+      "3":{
+        "type":"image",
+        "title":"Photo by Ray Hennessy on Unsplash",
+        "source":"_content/slides/img-3.jpg"
+      },
+      "4":{
+        "type":"image",
+        "title":"Photo by Ray Hennessy on Unsplash",
+        "source":"_content/slides/img-4.jpg"
+      },
+      "5":{
+        "type":"svg",
+        "title":"SVGs In Use",
+        "source":"_content/slides/eiffel-tower.svg",
+        "background-color": "#0099a6"
+      },
+      "6":{
+        "type":"image",
+        "title":"Photo by Guilherme Stecanella on Unsplash",
+        "source":"_content/slides/img-5.jpg"
+      },
+      "7":{
+        "type":"image",
+        "title":"Photo by Chris Ried on Unsplash",
+        "source":"_content/slides/img-6.jpg"
+      },
+      "8":{
+        "type":"image",
+        "title":"Photo by Anton Repponen on Unsplash",
+        "source":"_content/slides/img-7.jpg"
+      },
+      "9":{
+        "type":"video",
+        "title":"fireworks colorful",
+        "source":"_content/slides/karina-carvalho-92689-unsplash.jpg",
+        "mp4": "_content/slides/fireworks_rocket_colorful_lights_game_772.mp4",
+        "webm": "_content/slides/fireworks_rocket_colorful_lights_game_772.webm",
+        "ogv": "_content/slides/fireworks_rocket_colorful_lights_game_772.ogg"
+      },
+      "10":{
+        "type":"svg",
+        "title":"SVGs In Use",
+        "source":"_content/slides/farm-fresh-eggs.svg",
+        "background-color": "#d42e8a"
+      },
+      "11":{
+        "type":"vimeo",
+        "title":"Vimeo Support",
+        "source":"_content/slides/karina-carvalho-92689-unsplash.jpg",
+        "id": "312097339"
+      },
+      "12":{
+        "type":"image",
+        "title":"PNGs In Use",
+        "source":"_content/slides/img-3.png",
+        "png": true,
+        "background-color": "#1b1b1b"
+      },
+      "13":{
+        "type":"svg",
+        "title":"SVGs In Use",
+        "source":"_content/slides/boxer-love.svg",
+        "background-color": "#d42e2e"
+      },
+      "14":{
+        "type":"svg",
+        "title":"SVGs In Use",
+        "source":"_content/slides/bike.svg",
+        "background-color": "#2ed487"
+      },
+      "15":{
+        "type":"svg",
+        "title":"SVGs In Use",
+        "source":"_content/slides/Butterfly.svg",
+        "background-color": "#6468e2"
+      },
+      "16":{
+        "type":"image",
+        "title":"PNGs In Use",
+        "source":"_content/slides/img-2.png",
+        "png": true,
+        "background-color": "#1b1b1b"
+      },
+      "17":{
+        "type":"image",
+        "title":"Photo by Greg Rakozy on Unsplash",
+        "source":"_content/slides/img-1.jpg"
+      },
+      "18":{
+        "type":"svg",
+        "title":"SVGs In Use",
+        "source":"_content/slides/farmfreshcreamery.svg",
+        "background-color": "#d4542e"
+      },
+      "19":{
+        "type":"image",
+        "title":"PNGs In Use",
+        "source":"_content/slides/img-4.png",
+        "png": true,
+        "background-color": "#ff7a7a"
+      },
+      "20":{
+        "type":"image",
+        "title":"PNGs In Use",
+        "source":"_content/slides/img-5.png",
+        "png": true,
+        "background-color": "#691818"
+      },
+      "21":{
+        "type":"svg",
+        "title":"SVGs In Use",
+        "source":"_content/slides/christmas-bells.svg",
+        "background-color": "#FF9800"
+      },
+      "22":{
+        "type":"svg",
+        "title":"SVGs In Use",
+        "source":"_content/slides/falling-leaves.svg",
+        "background-color": "#4CAF50"
+      },
+      "23":{
+        "type":"svg",
+        "title":"SVGs In Use",
+        "source":"_content/slides/i-love-my-golden.svg",
+        "background-color": "#00BCD4"
+      },
+      "24":{
+        "type":"svg",
+        "title":"SVGs In Use",
+        "source":"_content/slides/feather.svg",
+        "background-color": "#d42e45"
+      }
+
+
+
+
+    }
+  }
+}
