@@ -1,0 +1,304 @@
+/* ***********************************************************
+## VARIABLES
+*********************************************************** */
+$hmx-autoplay       :				false; // set autoplay
+$hmx-speed          :			  5; // set slideshow speed
+$hmx-max-slides     :				24; // max number of slider items
+$hmx-background     :		  	color('black'); // color of background screen
+$hmx-fade           :				150ms;  // transition speed
+$main-nav-color     :				color('white',0.9); // color of main nav
+$main-nav-active    :	      color($color-2,0.8);  // color of active nav
+$prev-next-color    :	      color('black',0.2); // color of prev/next button
+$prev-next-bg       :				color('black',0); // color of background for prev/next button
+$prev-next-bg-hover : 			color('black',0.1); // hover color state of background for prev/next button
+$hmx-responsive     :				true;  // set responsive of slidershow
+$hmx-breakpoint     :		    720px; // set breakpoint of slidershow
+$hmx-autohide-btn   :			  true; // option to autohide prev/next button
+$hmx-prev-icon      :		  	'../_ui/arrow_left_white.svg'; // set Prev Icon
+$hmx-next-icon      :				'../_ui/arrow_right_white.svg'; // set Next Icon
+
+
+
+
+
+
+
+[data-slide] {
+  @include query(( pos:1,w:100%,h:100%,o:3,bg-c:$hmx-max-slides ));
+  @include setClr(0, both);
+  .hmx-slides {
+    & > div {
+      @include query(( pos:(2,0 0 0 0),vis:hidden ));
+      @include setOpacity(0);
+      @include setBg(( s:cover,pos:center,c:color('black',0.2) ));
+      @include setTransition(all #{$hmx-fade} linear);
+      @include setTransition(( visibility 0s, opacity 0.5s linear ));
+      /* Display first child on load */
+      &:first-child { // show first item
+        @include setBgAnime(3s);
+        @include setOpacity(1);
+        @include query(( z:10,vis:visible ));
+      }
+      &:after {
+        @include query(( pos:(2,0 -1 -1 0),z:0,w:100%,h:100%,ct:'' ));
+        @include setBg(( img:'../_ui/pattern.png',pos:top left,c:color('black',0.25) ));
+        @include setOpacity(0.3);
+      }
+      & div {
+        @include query(( pos:(2,50% -1 -1 50%) ));
+        text-shadow: 0 0 20px color('black',0.5);
+        @include setTransform(translate(-50%, -50%));
+        @include setFont(( c:color('white'),align:center ));
+        & h1 {
+          @include query(( marg:2vw auto,fw:bold,fsize:3vw,lh:4vw ));
+        }
+        &.video {
+          @include query(( w:100%,h:100%,top:0,left:0 ));
+          @include setTransform(translate(0%, 0%));
+          & video {
+            @include query(( pos:(2,50% -1 -1 50%),wmin:100%,hmin:100%,w:auto,h:auto,z:-1000,o:3 ));
+            @include setTransform(translateX(-50%) translateY(-50%));
+          }
+        }
+        &.vimeo {
+          @include query(( w:100%,h:100%,o:3,pe:none ));
+          iframe {
+            /* Height Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+            /* Width Min Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+            @include query(( w:100vw,h:56.25vw,hmin:100vh,wmin:177.77vh,pos:(2,50% -1 -1 50%) ));
+            @include setTransform(translate(-50%, -50%));
+          }
+        }
+      }
+
+    }
+  }
+
+
+  & input[type="radio"] {
+    @include query(( pos:(3,-9999px) ));
+		&:checked {
+		$i: $hmx-max-slides; // go throw slide to set active one
+			@while $i > 0 {
+
+				&:nth-of-type(#{$i}) {
+					~ .hmx-slides { // show slide
+            & > div {
+              @include setOpacity(0);
+              @include setAnimation(none);
+              &:nth-child(#{$i}) {
+                @include setBgAnime(1s);
+                @include query(( vis:visible ));
+                // @include setOpacity(1);
+  						}
+            }
+					}
+					~ .hmx-nav { // set active to dot
+            & label {
+              @include query(( bg:$main-nav-color ));
+              @include setAnimation(none);
+              &:nth-child(#{$i}) {
+                @include query(( bg:$main-nav-active ));
+  							&:hover {
+                  @include setOpacity(1);
+  							}
+  						}
+            }
+					}
+				}
+				$i: $i - 1;
+			}
+			&:first-of-type:last-of-type { // hide nav if no more than one item
+				~ .hmx-nav,
+				~ .hmx-prev-nav,
+				~ .hmx-next-nav { @include query(( dis:1 )); }
+			}
+		}
+
+
+	}
+
+  .hmx-nav {
+    @include query(( pos:(2,-1 -1 15px 50%),z:1,marg:0 0.4vw ));
+    @include setUserS(none);
+    @include setTransform(translateX(-50%));
+    & label {
+      @include query(( dis:4,cu:pointer,w:25px,h:4px,marg:2px 0.2vw ));
+      // @include setRadius(50%);
+      @include setTransition(opacity 200ms ease);
+      @include setBg(( c:$main-nav-color ));
+      &:hover {
+        @include setOpacity(0.8);
+      }
+      &:first-child { // make first one active
+        @include setBg(( c:$main-nav-active ));
+      }
+    }
+  }
+
+  %extent_prev_next {
+    @include query(( cu:pointer,dis:1,pos:(2,0 -1 0),w:80px ));
+    @include setTransition(all 200ms ease);
+    @include setTapC();
+    @include setBg(( c:$prev-next-bg ));
+    &:before {
+      @include query(( pos:(2,50%),c:$prev-next-color,ct:'',w:50px,h:50px ));
+		}
+    &:hover {
+      @include query(( bg:$prev-next-bg-hover ));
+			@if $hmx-responsive == true {
+				@media (max-width: $hmx-breakpoint) {
+          @include query(( bg:color('white') ));
+				}
+			}
+		}
+    @if $hmx-responsive == true {
+			@media (max-width: $hmx-breakpoint) {
+        @include query(( w:40% ));
+			}
+		}
+  }
+
+  .hmx-prev-nav {
+    & label {
+      @include query(( left:0 ));
+      @extend %extent_prev_next;
+      &:before {
+        @include query(( left:50% ));
+        @include setBg(( img:$hmx-prev-icon ));
+        @include setTransform( translate(-50%, -50%));
+        @if $hmx-responsive == true {
+          @media (max-width: $hmx-breakpoint) {
+            @include query(( left:25px ));
+          }
+        }
+      }
+      @if $hmx-autohide-btn == true {
+        @include setTransform( translateX(-100%) );
+        @if $hmx-responsive == true {
+          @media (max-width: $hmx-breakpoint) {
+            @include setTransform( translate(0) );
+          }
+        }
+      }
+
+    }
+  }
+
+
+  .hmx-next-nav {
+    & label {
+      @include query(( right:0 ));
+      @extend %extent_prev_next;
+      &:before {
+        @include query(( right:50% ));
+        @include setBg(( img:$hmx-next-icon ));
+        @include setTransform(translate(50%, -50%));
+        @if $hmx-responsive == true {
+          @media (max-width: $hmx-breakpoint) {
+            @include query(( right:25px ));
+          }
+        }
+      }
+      @if $hmx-autohide-btn == true {
+        @include setTransform( translateX(100%) );
+        @if $hmx-responsive == true {
+          @media (max-width: $hmx-breakpoint) {
+            @include setTransform( translate(0) );
+          }
+        }
+      }
+
+    }
+  }
+
+	@if $hmx-autohide-btn == true { // Autohide Prev/Next Navigation
+		&:hover {
+			.hmx-prev-nav,
+			.hmx-next-nav {
+        & label {
+          @include setTransform(translateX(0));
+        }
+			}
+		}
+	}
+
+}
+
+
+
+[data-slide~="hmx-slideshow"] {
+
+  & input[type="radio"] {
+    &:checked {
+      $num: $hmx-max-slides; // go throw slide to set active one
+      @while $num > 0 {
+        &:nth-of-type(#{$num}) {
+          $prev: ($num - 1);
+					$next: ($num + 1);
+          @if $prev > 0 { // show prev button
+						~ .hmx-prev-nav {
+              & label {
+                @include query(( dis:1 ));
+                &:nth-child(#{$prev}) { @include query(( dis:3 )); }
+			        }
+            }
+					}
+
+          @if $next < ($hmx-max-slides + 1) { // show next button
+						~ .hmx-next-nav {
+              & label {
+                @include query(( dis:1 ));
+                &:nth-child(#{$next}) { @include query(( dis:3 )); }
+			        }
+						}
+					}
+
+					&:first-of-type { // show last prev btn
+						~ .hmx-prev-nav {
+							& label:last-child { @include query(( dis:3 )); }
+						}
+					}
+
+          &:last-of-type { // show last next btn
+						~ .hmx-next-nav {
+							& label:first-child { @include query(( dis:3,z:10 )); }
+						}
+					}
+
+        }
+        $num: $num - 1;
+      }
+
+    }
+  }
+
+  .hmx-prev-nav { // show first Prev Button on Loaded
+    & label:last-child { @include query(( dis:3 )); }
+  }
+
+  .hmx-next-nav { // show first Next Button on Loaded
+    & label:nth-child(2) { @include query(( dis:3,z:0 )); }
+  }
+
+}
+
+
+@if $hmx-autoplay == true {
+
+  $s: $hmx-max-slides;
+  $time : 1;
+	@while $s > 1 {
+
+
+  }
+}
+
+@keyframes bgAnimation {
+  0% { @include setOpacity(0); }
+  100% { @include setOpacity(1); }
+}
+@-webkit-keyframes bgAnimation {
+  0% { @include setOpacity(0); }
+  100% { @include setOpacity(1); }
+}

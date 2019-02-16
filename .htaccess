@@ -1,0 +1,40 @@
+# ENABLE ERRORS - these MUST be commented out or removed (preferred) when the site goes live
+php_flag display_startup_errors on
+php_flag display_errors on
+php_flag html_errors on
+
+
+
+
+
+# this will handle setting up clean friendly URL's
+# only the last portion of the URL really means anything, the others are ignored, query string is preserved
+# this also means that we should be using more user friendly names for our php files
+
+RewriteEngine on
+
+# we are trying to get to the CMS
+RewriteRule ^sitecontrol - [L]
+
+# set the index to home conversion for a nicer looking URL
+RewriteRule ^home/?$ index.php [L]
+
+# one level deep
+RewriteRule ^([a-zA-Z0-9-]+)/?$ $1.php?base=1&p=$1 [L]
+
+# two levels deep
+RewriteRule ^([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/?$ $2.php?base=2&p=$2 [L]
+
+# three levels deep
+RewriteRule ^([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/?$ $3.php?base=3&p=$3 [L]
+
+# four levels deep
+RewriteRule ^([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/?$ $4.php?base=4&p=$4 [L]
+
+# five levels deep
+RewriteRule ^([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/?$ $5.php?base=5&p=$5 [L]
+
+# six levels deep
+RewriteRule ^([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/?$ $6.php?base=6&p=$6 [L]
+
+# if you think you need more than 6 levels, you should re-think what you are trying to do
